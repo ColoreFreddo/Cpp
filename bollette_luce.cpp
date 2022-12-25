@@ -12,9 +12,9 @@ int calcola_bolletta(int attuale, int precedente){
     importo_totale =  consumo * kw;
     if (consumo < 250){
         quota_fissa = (15/100)*importo_totale;
-   }if (consumo >= 250 && consumo <= 500){
+   }else if (consumo >= 250 && consumo <= 500){
         quota_fissa = (25/100)*importo_totale;
-   }if (consumo > 500){
+   }else if (consumo > 500){
         quota_fissa = (30/100)*importo_totale;
    }
     out = importo_totale + quota_fissa;
