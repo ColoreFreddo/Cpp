@@ -2,23 +2,21 @@
 
 #include <iostream>
 using namespace std;
-const double kw = 0.07;
+const float kw = 0.07;
 
 //  funzione
-int calcola_bolletta(int attuale, int precedente){
-    int consumo=0, importo_totale=0, out=0, basso=250, alto=500;
-    double quota_fissa =0.0;
+float calcola_bolletta(float &attuale, float &precedente){
+    float consumo = 0, importo_totale = 0, quota_fissa = 0.0;
     consumo = attuale - precedente;
     importo_totale =  consumo * kw;
     if (consumo < 250){
-        quota_fissa = (15/100)*importo_totale;
+        importo_totale += (15/100)*importo_totale;
    }else if (consumo >= 250 && consumo <= 500){
-        quota_fissa = (25/100)*importo_totale;
+        importo_totale += (25/100)*importo_totale;
    }else if (consumo > 500){
-        quota_fissa = (30/100)*importo_totale;
+        importo_totale += (30/100)*importo_totale;
    }
-    out = importo_totale + quota_fissa;
-    return out;
+    return importo_totale;
 }
 
 //  main
@@ -27,23 +25,44 @@ int main() {
 
 //  variabili
     string nome="";
-    int lettura_p = 0, lettura_a = 0, out = 0;
+    float lettura_p = 0, lettura_a = 0, out = 0;
+    int sel = 0;
+    while (sel !=3) {
+        cout << "---------------------------" << endl;
+        cout << "Selezionare azione: " << endl;
+        cout << "(1) per inserire dati" << endl;
+        cout << "(2) per scontrino bolletta" << endl;
+        cout << "(3) per uscire" << endl;
+        cout << "---------------------------" << endl;
+        cin >> sel;
+        switch(sel){
+            case 1:
 
 //  input & output
-    cout << "inserire nome: " << endl;
-    cin >> nome;
-    cout << "inserire numero lettura precendente: " << endl;
-    cin >> lettura_p;
-    cout << "inserire numero lettura attuale: " << endl;
-    cin >> lettura_a;
-    out = calcola_bolletta(lettura_a, lettura_p);
+                cout << "inserire nome: " << endl;
+                cin >> nome;
+                cout << "inserire numero lettura precendente: " << endl;
+                cin >> lettura_p;
+                cout << "inserire numero lettura attuale: " << endl;
+                cin >> lettura_a;
+                out = calcola_bolletta(lettura_a, lettura_p);
+                break;
+            case 2:
 
 //  output
-    cout << "Nome: " << nome << endl;
-    cout << "Costo al Kw: " << kw << " euro" << endl;
-    cout << "Lettura precedente: " << lettura_p << endl;
-    cout << "Lettura attuale: " << lettura_a << endl;
-    cout << "Totale da saldare: " << out << " euro" << endl;
+                cout << "Nome: " << nome << endl;
+                cout << "Costo al Kw: " << kw << " euro" << endl;
+                cout << "Lettura precedente: " << lettura_p << " kw" << endl;
+                cout << "Lettura attuale: " << lettura_a << " kw" << endl;
+                cout << "Totale da saldare: " << out << " euro" << endl;
+                break;
+            case 3:
+                break;
+                default:
+                cout << "errore carattere non valido!" << endl;
+                break;
+        }
+    }
     return 0;
 }
 
