@@ -117,3 +117,5 @@ int main() {
     }
     return 0;
 }
+
+//But once you grow old, you become afraid of even losing things without any value.
