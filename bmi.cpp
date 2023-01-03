@@ -3,12 +3,14 @@
 #include <iostream>
 using namespace std;
 
-float bmi_it(float peso, float altezza){
-    return peso;
+float bmi_it(float peso, float altezza){ 
+    return peso / (altezza*altezza);
 }
 
 float bmi_en(float peso, float altezza){
-    return peso;
+    float altezza_new = 0;
+    altezza_new = altezza * 12;
+    return 703 * peso / (altezza_new * altezza_new) + 0.001;
 }
 
 int main() {
@@ -28,10 +30,18 @@ int main() {
             cout << "--------------------" << endl;
             cin >> peso_it;
             cout << "-----------------------" << endl;
-            cout << "Inserisci altezza (cm):" << endl;
+            cout << "Inserisci altezza (m):" << endl;
             cout << "-----------------------" << endl;
-            cin >> altezza_en;
-            out_it = bmi_it(peso_it, altezza_it);
+            cin >> altezza_it;
+            if((peso_it > 9 && peso_it < 181) && (altezza_it > 0.9 && altezza_it < 2.21)){
+					out_it = bmi_it(peso_it, altezza_it);
+				}else {
+                    cout << "Errore misure non valide!" << endl;
+                    return 0;
+                }
+            cout << "--------------------" << endl;
+            cout << "BMI = " << out_it << endl;
+            cout << "--------------------" << endl;
             break;
         case 2:
             cout << "-------------------" << endl;
@@ -42,7 +52,17 @@ int main() {
             cout << "Insert height (ft):" << endl;
             cout << "-------------------" << endl;
             cin >> altezza_en;
-            out_en = bmi_en(peso_en,altezza_en);
+            if((peso_en > 22.0461 && peso_en < 396.833) && (altezza_en > 3.2807 && altezza_en < 7.2179)){
+					out_en = bmi_en(peso_en, altezza_en);
+				}else {
+                    cout << "Errore misure non valide!" << endl;
+                    cout << peso_en << endl;
+                    cout << altezza_en << endl;
+                    return 0;
+                }
+            cout << "--------------------" << endl;
+            cout << "BMI = " << out_en << endl;
+            cout << "--------------------" << endl;
             break;
             }
     return 0;
