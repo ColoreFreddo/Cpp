@@ -35,7 +35,7 @@ bool controlloInput(){
 //main
 
 int main() {
-    bool r=true;
+    bool r=true, ceck=false;
     int n;
     int sel=0, kys=0;
     float km=0, s=0;
@@ -66,22 +66,27 @@ int main() {
                 cout << "-(4) ghiacciato               -" << endl;
                 cout << "-------------------------------" << endl;
                 cin >> sel;
+                ceck=true;
                 }while (controlloInput() == false);
                 break;
             case 2:
-                switch (sel){
-                    case 1:
-                        s = c_vel(km, asf_ruv);
-                    break;
-                    case 2:
-                        s = c_vel(km, asf_lis);
-                    break;
-                    case 3:
-                        s = c_vel(km, asf_bag);
-                    break;
-                    case 4:
-                        s = c_vel(km, asf_ghi);
-                    break;
+                if (ceck==true){
+                    switch (sel){
+                        case 1:
+                            s = c_vel(km, asf_ruv);
+                        break;
+                        case 2:
+                            s = c_vel(km, asf_lis);
+                        break;
+                        case 3:
+                            s = c_vel(km, asf_bag);
+                        break;
+                        case 4:
+                            s = c_vel(km, asf_ghi);
+                        break;
+                }if (ceck==false){
+                    cout << "ERRORE: inserire prima gli input" << endl;
+                }
             break;
             }
             case 3:
